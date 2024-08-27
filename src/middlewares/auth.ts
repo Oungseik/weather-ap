@@ -3,11 +3,11 @@ import { createMiddleware } from "hono/factory";
 
 import { config } from "@/config.js";
 
-let allowPaths = [
+const allowPaths = [
 	"/login",
 	"/register",
 	"/api/auth/login",
-	"api/auth/register",
+	"/api/auth/register",
 ];
 
 export const auth_mw = createMiddleware(async (c, next) => {

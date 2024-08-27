@@ -17,4 +17,4 @@ interface User {
 }
 
 export const User = db.collection<User>("users");
-User.createIndex(["username", "email"]);
+User.createIndex(["username", "email"], { unique: true });
