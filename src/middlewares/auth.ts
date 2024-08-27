@@ -1,11 +1,23 @@
+import { getSignedCookie } from "hono/cookie";
 import { createMiddleware } from "hono/factory";
 
-export const auth_mw = createMiddleware(async (c, next) => {
-	let token = c.req.header("Authorization");
+import { config } from "@/config.js";
 
-	if (!token && !(c.req.path === "/login" || c.req.path === "/register")) {
+let allowPaths = [
+	"/login",
+	"/register",
+	"/api/auth/login",
+	"api/auth/register",
+];
+
+export const auth_mw = createMiddleware(async (c, next) => {
+	const token =
+		c.req.header("Authorization") ||
+		(await getSignedCookie(c, config.secret, "auth_token"));
+
+	if (!token && !allowPaths.includes(c.req.path)) {
 		return c.redirect("/login");
 	}
 
-	next();
+	await next();
 });

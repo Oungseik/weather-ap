@@ -2,10 +2,12 @@
   "name": "weather-app",
   "version": "0.1.0",
   "description": "Weather investigation and trip management.",
+  "type": "module",
   "scripts": {
     "init": "unzip minicap.zip",
     "dev": "nodemon | pino-pretty -S",
     "build": "tsup",
+    "dev-start": "node dist/index.cjs | pino-pretty -S",
     "lint": "eslint --ignore-pattern \"{dist,node_modules}\""
   },
   "keywords": [],
@@ -20,6 +22,7 @@
     "nodemon": "^3.1.4",
     "pino-pretty": "^11.2.2",
     "prettier": "^3.3.3",
+    "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
@@ -28,7 +31,10 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.12.0",
+    "@hono/zod-validator": "^0.2.2",
     "hono": "^4.5.4",
-    "pino": "^9.3.2"
+    "mongodb": "^6.8.0",
+    "pino": "^9.3.2",
+    "zod": "^3.23.8"
   }
 }
