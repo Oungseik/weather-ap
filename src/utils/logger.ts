@@ -1,6 +1,6 @@
 import { pino } from "pino";
 
-let p = pino();
+const p = pino();
 
 export const logger = {
   create(scope: string) {

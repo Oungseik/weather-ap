@@ -1,3 +1,3 @@
-export let config = {
+export const config = {
   port: 5000,
 };
