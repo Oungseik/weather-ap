@@ -37,7 +37,7 @@ router.post("/login", zValidator("form", LoginSchema), async (c) => {
 		path: "/",
 		secure: true,
 		httpOnly: true,
-		maxAge: 1000,
+		maxAge: 3600,
 		sameSite: "strict",
 	});
 	return c.redirect("/");
@@ -59,5 +59,5 @@ router.post("/register", zValidator("form", RegisterSchema), async (c) => {
 
 	await User.insertOne({ username, email, password, role: "USER" });
 	log.debug(`create new user, ${username} ${email}`);
-	c.redirect("/login");
+	return c.redirect("/login");
 });

@@ -6,6 +6,7 @@ import { logger } from "@/utils/logger.js";
 
 import { analytic_mw } from "./middlewares/analytic.js";
 import { auth_mw } from "./middlewares/auth.js";
+import { router as adminRouter } from "./routers/admin.js";
 import { router as authRouter } from "./routers/auth.js";
 import { router as userRouter } from "./routers/users.js";
 
@@ -27,4 +28,5 @@ app.get("/health", (c) => c.json({ message: "server is up and running" }));
 app.use("/*", serveStatic({ root: "./pages" }));
 
 app.route("/api/auth", authRouter);
-app.route("/users", userRouter);
+app.route("/api/users", userRouter);
+app.route("/api/admin", adminRouter);

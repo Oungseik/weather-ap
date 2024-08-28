@@ -27,7 +27,7 @@
 					<a href="#" class="list-group-item list-group-item-action">
 						<i class="fas fa-users"></i>
 						<span class="d-none d-lg-inline">Users</span>
-						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="user-count">20</span>
+						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="user-count"></span>
 					</a>
 					<a href="#" class="list-group-item list-group-item-action">
 						<i class="fas fa-chart-line"></i>
@@ -84,6 +84,8 @@
 									<span class="text-success">
 										<i class="fas fa-chart-line"></i>
 										Daily visitors
+
+						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="daily-visitors"></span>
 									</span>
 								</div>
 							</div>
@@ -95,6 +97,7 @@
 									<span class="text-success">
 										<i class="fas fa-chart-line"></i>
 										Weekly visitors
+						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="weekly-visitors"></span>
 									</span>
 								</div>
 							</div>
@@ -106,6 +109,7 @@
 									<span class="text-success">
 										<i class="fas fa-chart-line"></i>
 										Monthly visitors
+						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="monthly-visitors"></span>
 									</span>
 								</div>
 							</div>
@@ -141,9 +145,16 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    let count = fetch("/users/count").then(res => res.json()).then((data) => {
+    let count = fetch("/api/users/count").then(res => res.json()).then((data) => {
       document.getElementById("user-count").innerText = data.count
     })
+
+    let dailyVisit = fetch("/api/admin/vistors/count?weekly=1&monthly=1").then(res => res.json()).then((data) => {
+      document.getElementById("daily-visitors").innerText = data.dailyCount
+      document.getElementById("weekly-visitors").innerText = data.weeklyCount
+      document.getElementById("monthly-visitors").innerText = data.monthlyCount
+    })
+
     </script>
 </body>
 </html>
