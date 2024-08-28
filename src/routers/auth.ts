@@ -1,16 +1,15 @@
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { setSignedCookie } from "hono/cookie";
-import { z } from "zod";
 import { html } from "hono/html";
+import { z } from "zod";
 
 import { config } from "@/config.js";
-import { User } from "@/utils/mongodb.js";
-
 import { logger } from "@/utils/logger.js";
+import { User } from "@/utils/mongodb.js";
 export const router = new Hono();
 
-let log = logger.create("routers:auth");
+const log = logger.create("routers:auth");
 
 const LoginSchema = z.object({
 	email: z.string().email(),
@@ -20,14 +19,19 @@ const LoginSchema = z.object({
 router.post("/login", zValidator("form", LoginSchema), async (c) => {
 	const { email, password } = c.req.valid("form");
 
-	let user = await User.findOne({ email });
+	const user = await User.findOne({ email });
 	if (!user || user.password !== password) {
 		return c.html(
 			html`<h1>Error: user does not exist or password not correct.</h1>`,
 		);
 	}
 
-	let token = { id: user._id };
+	const token = {
+		id: user._id,
+		username: user.username,
+		email: user.email,
+		role: user.role,
+	};
 
 	await setSignedCookie(c, "auth_token", JSON.stringify(token), config.secret, {
 		path: "/",
@@ -46,8 +50,8 @@ const RegisterSchema = z.object({
 });
 
 router.post("/register", zValidator("form", RegisterSchema), async (c) => {
-	let { username, email, password } = c.req.valid("form");
-	let oldUser = await User.findOne({ email });
+	const { username, email, password } = c.req.valid("form");
+	const oldUser = await User.findOne({ email });
 	if (oldUser) {
 		log.debug(`user already exist: ${email}`);
 		return c.html(html`<h1>Error: Email or Username already exist.</h1>`);

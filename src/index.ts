@@ -14,7 +14,7 @@ serve({ fetch: app.fetch, port: config.port }, () => {
 });
 
 async function createAdminIfNotExist() {
-	let admin = await User.findOne({ username: "admin" });
+	const admin = await User.findOne({ username: "admin" });
 	if (admin) {
 		log.debug("admin account already exist.");
 		return;
