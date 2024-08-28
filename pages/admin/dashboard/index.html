@@ -73,10 +73,10 @@
 				</nav>
 				<div class="container-fluid mt-3 p-4"> <!-- Content -->
 					<div class="row mb-3">	<!-- Content Row 0 -->
-						</div>
+              <h2 class="h6 text-white-50">QUICK STATS</h2>
+					</div>
 					</div> <!-- Content Row 0 -->
-					<div class="row flex-column flex-lg-row"> <!-- Content Row 1 -->
-						<h2 class="h6 text-white-50">QUICK STATS</h2>
+					<div class="row flex-column flex-lg-row p-4"> <!-- Content Row 1 -->
 						<div class="col">
 							<div class="card mb-3">
 								<div class="card-body">
@@ -121,6 +121,7 @@
 									<span class="text-success">
 										<i class="fas fa-chart-line"></i>
 										Yearly visitors
+						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="yearly-visitors"></span>
 									</span>
 								</div>
 							</div>
@@ -149,10 +150,11 @@
       document.getElementById("user-count").innerText = data.count
     })
 
-    let dailyVisit = fetch("/api/admin/vistors/count?weekly=1&monthly=1").then(res => res.json()).then((data) => {
+    let dailyVisit = fetch("/api/admin/vistors/count?weekly=1&monthly=1&yearly=1").then(res => res.json()).then((data) => {
       document.getElementById("daily-visitors").innerText = data.dailyCount
       document.getElementById("weekly-visitors").innerText = data.weeklyCount
       document.getElementById("monthly-visitors").innerText = data.monthlyCount
+      document.getElementById("yearly-visitors").innerText = data.yearlyCount
     })
 
     </script>

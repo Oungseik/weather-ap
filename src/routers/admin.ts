@@ -30,6 +30,7 @@ router.get("/vistors/count", async (c) => {
 	let dailyCount = await countVisitors(daily);
 	let weeklyCount;
 	let monthlyCount;
+	let yearlyCount;
 
 	let weekly = new Date();
 	weekly.setDate(daily.getDate() - 7);
@@ -43,5 +44,11 @@ router.get("/vistors/count", async (c) => {
 		monthlyCount = await countVisitors(monthly);
 	}
 
-	return c.json({ dailyCount, weeklyCount, monthlyCount });
+	let yearly = new Date();
+	yearly.setDate(daily.getDate() - 365);
+	if (c.req.query("yearly")) {
+		yearlyCount = await countVisitors(yearly);
+	}
+
+	return c.json({ dailyCount, weeklyCount, monthlyCount, yearlyCount });
 });
