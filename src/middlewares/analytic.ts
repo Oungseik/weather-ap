@@ -1,18 +1,19 @@
-import { User, Visit } from "@/utils/mongodb.js";
 import { createMiddleware } from "hono/factory";
+import { ObjectId } from "mongodb";
+
+import { User, Visit } from "@/utils/mongodb.js";
 
 import { allowPaths } from "./auth.js";
-import { ObjectId } from "mongodb";
 
 type UserFromCookie = {
 	id: string;
 } & Omit<User, "password">;
 
-export let analytic_mw = createMiddleware(async (c, next) => {
-	let path = c.req.path;
+export const analytic_mw = createMiddleware(async (c, next) => {
+	const path = c.req.path;
 	if (allowPaths.includes(path)) return await next();
 
-	let user: UserFromCookie = c.get("user");
+	const user: UserFromCookie = c.get("user");
 	if (user.role !== "ADMIN") {
 		Visit.insertOne({ path, userId: new ObjectId(user.id), date: new Date() });
 	}

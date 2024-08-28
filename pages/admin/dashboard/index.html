@@ -27,7 +27,7 @@
 					<a href="#" class="list-group-item list-group-item-action">
 						<i class="fas fa-users"></i>
 						<span class="d-none d-lg-inline">Users</span>
-						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end">20</span>
+						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="user-count">20</span>
 					</a>
 					<a href="#" class="list-group-item list-group-item-action">
 						<i class="fas fa-chart-line"></i>
@@ -140,6 +140,11 @@
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    let count = fetch("/users/count").then(res => res.json()).then((data) => {
+      document.getElementById("user-count").innerText = data.count
+    })
+    </script>
 </body>
 </html>
 </html>
