@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 import { config } from "@/config.js";
 
@@ -18,3 +18,11 @@ interface User {
 
 export const User = db.collection<User>("users");
 User.createIndex(["username", "email"], { unique: true });
+
+interface Visit {
+	userId: ObjectId;
+	date: Date;
+}
+
+export const Visit = db.collection<Visit>("visits");
+User.createIndex(["userId"], { unique: false });

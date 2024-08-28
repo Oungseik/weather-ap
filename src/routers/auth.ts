@@ -20,7 +20,16 @@ const LoginSchema = z.object({
 router.post("/login", zValidator("form", LoginSchema), async (c) => {
 	const { email, password } = c.req.valid("form");
 
-	await setSignedCookie(c, "auth_token", "token", config.secret, {
+	let user = await User.findOne({ email });
+	if (!user || user.password !== password) {
+		return c.html(
+			html`<h1>Error: user does not exist or password not correct.</h1>`,
+		);
+	}
+
+	let token = { id: user._id };
+
+	await setSignedCookie(c, "auth_token", JSON.stringify(token), config.secret, {
 		path: "/",
 		secure: true,
 		httpOnly: true,
