@@ -5,7 +5,7 @@ import { html } from "hono/html";
 import { config } from "@/config.js";
 import { User } from "@/utils/mongodb.js";
 
-const allowPaths = [
+export const allowPaths = [
 	"/login",
 	"/register",
 	"/api/auth/login",
@@ -19,19 +19,14 @@ export const auth_mw = createMiddleware(async (c, next) => {
 
 	const path = c.req.path;
 
-	if (allowPaths.includes(path)) {
-		await next();
-		return;
-	}
-
-	if (!token || typeof token !== "string") {
-		return c.redirect("/login");
-	}
+	if (allowPaths.includes(path)) return await next();
+	if (!token || typeof token !== "string") return c.redirect("/login");
 
 	const user: Omit<User, "password"> = JSON.parse(token);
 
-	if (path.startsWith("/admin") && user.role !== "ADMIN")
+	if (path.startsWith("/admin") && user.role !== "ADMIN") {
 		return c.html(html`<h1>Error: you are not admin to access this page</h1>`);
+	}
 
 	c.set("user", user);
 

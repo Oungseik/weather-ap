@@ -22,6 +22,7 @@ User.createIndex(["username", "email"], { unique: true });
 interface Visit {
 	userId: ObjectId;
 	date: Date;
+	path: string;
 }
 
 export const Visit = db.collection<Visit>("visits");
