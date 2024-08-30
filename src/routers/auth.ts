@@ -1,6 +1,6 @@
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
-import { setSignedCookie } from "hono/cookie";
+import { setSignedCookie, deleteCookie } from "hono/cookie";
 import { html } from "hono/html";
 import { z } from "zod";
 
@@ -59,5 +59,10 @@ router.post("/register", zValidator("form", RegisterSchema), async (c) => {
 
 	await User.insertOne({ username, email, password, role: "USER" });
 	log.debug(`create new user, ${username} ${email}`);
+	return c.redirect("/login");
+});
+
+router.post("/logout", async (c) => {
+	deleteCookie(c, "auth_token");
 	return c.redirect("/login");
 });
