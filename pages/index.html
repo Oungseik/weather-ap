@@ -1,256 +1,332 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Page</title>
+    <link rel="stylesheet" href="/home.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 0;
+        margin: 0;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Main Page</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 0;
-      margin: 0;
-    }
+      .main-container {
+        display: flex;
+        min-height: 100vh;
+      }
 
-    .main-container {
-      display: flex;
-      min-height: 100vh;
-    }
+      .sidebar {
+        background-color: #f8f9fa;
+        border-right: 1px solid #dee2e6;
+        min-height: 100vh;
+        width: 250px;
+        padding: 20px;
+      }
 
-    .sidebar {
-      background-color: #f8f9fa;
-      border-right: 1px solid #dee2e6;
-      min-height: 100vh;
-      width: 250px;
-      padding: 20px;
-    }
+      .content {
+        flex: 1;
+        padding: 20px;
+      }
 
-    .content {
-      flex: 1;
-      padding: 20px;
-    }
+      .navbar-custom {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+      }
 
-    .navbar-custom {
-      background-color: #f8f9fa;
-      border-bottom: 1px solid #dee2e6;
-    }
+      select,
+      button {
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 16px;
+      }
 
-    select,
-    button {
-      margin: 10px 0;
-      padding: 10px;
-      font-size: 16px;
-    }
+      #cart,
+      #hotelNotes {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
 
-    #cart,
-    #hotelNotes {
-      margin-top: 20px;
-    }
-  </style>
-</head>
-
-<body>
-  <h3 class="text-center">Welcome From Weather-Forecasting based Recommendation System</h3>
-  <div class="main-container">
-    <!-- Sidebar -->
-    <nav class="sidebar">
-      <div class="list-group">
-        <!-- Transportation Section -->
-        <a href="#" id="transportation-link" class="list-group-item list-group-item-action">
-          <i class="fas fa-bus"></i>
-          <span class="d-none d-lg-inline">Transportation Ways</span>
-        </a>
-        <div class="mb-3">
-          <select id="cities" class="form-select" onchange="showBusCompanies()">
-            <option value="" disabled selected>Select city</option>
-            <option value="Yangon">Yangon</option>
-            <option value="Mandalay">Mandalay</option>
-            <option value="Naypyidaw">Naypyidaw</option>
-            <option value="Pyay">Pyay</option>
-            <option value="Taungoo">Taungoo</option>
-            <option value="Myingyan">Myingyan</option>
-            <option value="Bago">Bago</option>
-            <option value="Dawei">Dawei</option>
-            <option value="Sittwe">Sittwe</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <select id="buses" class="form-select" disabled>
-            <option value="" disabled selected>Select a bus company</option>
-          </select>
-        </div>
-        <button id="addToCart" class="btn btn-primary" onclick="addToCart()" disabled>Add to Notes</button>
-
-        <!-- Hotel Selection -->
-        <a href="#" id="hotel-link" class="list-group-item list-group-item-action">
-          <i class="fas fa-hotel"></i>
-          <span class="d-none d-lg-inline">Hotel Names</span>
-        </a>
-        <div class="mb-3">
-          <select id="cities-hotel" class="form-select" onchange="showHotels()">
-            <option value="" disabled selected>Select city</option>
-            <option value="Yangon">Yangon</option>
-            <option value="Mandalay">Mandalay</option>
-            <option value="Naypyidaw">Naypyidaw</option>
-            <option value="Pyay">Pyay</option>
-            <option value="Taungoo">Taungoo</option>
-            <option value="Myingyan">Myingyan</option>
-            <option value="Bago">Bago</option>
-            <option value="Dawei">Dawei</option>
-            <option value="Sittwe">Sittwe</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <select id="hotels" class="form-select" disabled>
-            <option value="" disabled selected>Select a hotel</option>
-          </select>
-        </div>
-        <button id="addHotelToNotes" class="btn btn-primary" onclick="addHotelToNotes()" disabled>Add to Notes</button>
-
-        <!-- Emergency Numbers -->
-        <a href="#" id="emergency-link" class="list-group-item list-group-item-action">
-          <i class="fas fa-phone-alt"></i>
-          <span class="d-none d-lg-inline">Emergency Numbers</span>
-        </a>
-
-
-        <!-- Weather Conditions -->
-        <a href="#" class="list-group-item list-group-item-action">
-          <i class="fas fa-flag"></i>
-          <span class="d-none d-lg-inline">View Weather Conditions</span>
-        </a>
-      </div>
-      <a href="#" class="list-group-item list-group-item-action">
-        <i class="fas fa-flag"></i>
-        <span class="d-none d-lg-inline">About Us</span>
-      </a>
-      <form method="POST" action="/api/auth/logout">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutUsModal">Log out</button>
-      </form>
-
-      <!-- Modal -->
-      <div class="modal fade" id="aboutUsModal" tabindex="-1" aria-labelledby="aboutUsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="aboutUsModalLabel">About Us</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>This website is designed to provide accurate weather forecasting and emergency alerts for conditions
-                like typhoons. Users can check weather forecasts by inputting their location without the need to sign
-                up. Upon registration, users can also receive personalized reminders about weather conditions, along
-                with recommendations for activities such as exercising, hiking, traveling, camping, and surfing.</p>
-              <p>Additionally, the platform offers features like saving searches, recording notes for selected hotels
-                and transportation, and accessing emergency numbers during natural disasters. An admin dashboard is also
-                available to manage user information and their interactions with the platform.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+  <body>
+    <h1 class="text-center text-bold">Welcome From Weather-Forecasting based Recommendation System</h3>
+    <div class="main-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="list-group">
+          <!-- Transportation Section -->
+          <a href="#" id="transportation-link" class="list-group-item list-group-item-action">
+            <i class="fas fa-bus"></i>
+            <span class="d-none d-lg-inline">Transportation Ways</span>
+          </a>
+          <div class="mb-3">
+            <select id="cities" class="form-select" onchange="showBusCompanies()">
+              <option value="" disabled selected>Select city</option>
+              <option value="Yangon">Yangon</option>
+              <option value="Mandalay">Mandalay</option>
+              <option value="Naypyidaw">Naypyidaw</option>
+              <option value="Pyay">Pyay</option>
+              <option value="Taungoo">Taungoo</option>
+              <option value="Myingyan">Myingyan</option>
+              <option value="Dawei">Dawei</option>
+                <option value="Bago">Bago</option>
+              <option value="Sittwe">Sittwe</option>
+            </select>
           </div>
-        </div>
-      </div>
-    </nav>
+          <div class="mb-3">
+            <select id="buses" class="form-select" disabled>
+              <option value="" disabled selected>Select a bus company</option>
+            </select>
+          </div>
+          <button id="addToCart" class="btn btn-primary" onclick="addToCart()" disabled>
+            Add to Notes
+          </button>
 
-    <!-- Main Content -->
-    <div class="content">
-      <!-- Top Navigation -->
-      <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Your Notes</a>
-          <div class="d-flex">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                  <i class="fas fa-user-circle"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a href="#" class="dropdown-item">User Profile</a></li>
-                  <li><a href="#" class="dropdown-item">Logout</a></li>
-                </ul>
-              </li>
-            </ul>
+          <!-- Hotel Selection -->
+          <a href="#" id="hotel-link" class="list-group-item list-group-item-action">
+            <i class="fas fa-hotel"></i>
+            <span class="d-none d-lg-inline">Hotel Names</span>
+          </a>
+          <div class="mb-3">
+            <select id="cities-hotel" class="form-select" onchange="showHotels()">
+              <option value="" disabled selected>Select city</option>
+              <option value="Yangon">Yangon</option>
+              <option value="Mandalay">Mandalay</option>
+              <option value="Naypyidaw">Naypyidaw</option>
+              <option value="Pyay">Pyay</option>
+              <option value="Taungoo">Taungoo</option>
+              <option value="Myingyan">Myingyan</option>
+              <option value="Bago">Bago</option>
+              <option value="Dawei">Dawei</option>
+              <option value="Sittwe">Sittwe</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <select id="hotels" class="form-select" disabled>
+              <option value="" disabled selected>Select a hotel</option>
+            </select>
+          </div>
+          <button id="addHotelToNotes" class="btn btn-primary" onclick="addHotelToNotes()" disabled>
+            Add to Notes
+          </button>
+
+          <!-- Emergency Numbers -->
+          <a href="#" id="emergency-link" class="list-group-item list-group-item-action">
+            <i class="fas fa-phone-alt"></i>
+            <span class="d-none d-lg-inline">Emergency Numbers</span>
+          </a>
+
+          <!-- Weather Conditions -->
+          <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-flag"></i>
+            <span class="d-none d-lg-inline">View Weather Conditions</span>
+          </a>
+        </div>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutUsModal" data-toggle="modal" data-target="#aboutUsModal">
+          <i class="fas fa-flag"></i>
+          <span class="d-none d-lg-inline">About Us</span>
+        </button>
+        <form method="POST" action="/api/auth/logout">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
+            Log out
+          </button>
+        </form>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="aboutUsModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="aboutUsModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="aboutUsModalLabel">About Us</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  This website is designed to provide accurate weather forecasting and emergency
+                  alerts for conditions like typhoons. Users can check weather forecasts by
+                  inputting their location without the need to sign up. Upon registration, users can
+                  also receive personalized reminders about weather conditions, along with
+                  recommendations for activities such as exercising, hiking, traveling, camping, and
+                  surfing.
+                </p>
+                <p>
+                  Additionally, the platform offers features like saving searches, recording notes
+                  for selected hotels and transportation, and accessing emergency numbers during
+                  natural disasters. An admin dashboard is also available to manage user information
+                  and their interactions with the platform.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
 
-      <!-- Notes Section -->
-      <div id="cart">
-        <h4>Selected Transportation</h4>
-        <ul id="cartItems" class="list-group"></ul>
+      <!-- Main Content -->
+      <div class="content">
+        <div class="weather-data">
+          <div class="current-weather">
+            <div class="details">
+                <h2 id="main-city">Hpa-An (<span id="current-date"></span>)</h2>
+              <h4>Temperature: 19.10</h4>
+              <h4>Wind speed: 4.32 M/S</h4>
+              <h4>Humidity: 80%</h4>
+            </div>
+            <div class="icon">
+              <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" />
+              <h4>Moderate Rain</h4>
+            </div>
+          </div>
+          <div class="days-forecast">
+            <h2>5-Day Forecast</h2>
+            <ul class="weather-cards">
+              <li class="card">
+                <h3>(2024-09-20)</h3>
+                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" />
+                <h4>Temp: 19.10</h4>
+                <h4>Wind: 4.32 M/S</h4>
+                <h4>Humidity: 80%</h4>
+              </li>
+              <li class="card">
+                <h3>(2024-09-20)</h3>
+                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" />
+                <h4>Temp: 19.10</h4>
+                <h4>Wind: 4.32 M/S</h4>
+                <h4>Humidity: 80%</h4>
+              </li>
+              <li class="card">
+                <h3>(2024-09-20)</h3>
+                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" />
+                <h4>Temp: 19.10</h4>
+                <h4>Wind: 4.32 M/S</h4>
+                <h4>Humidity: 80%</h4>
+              </li>
+              <li class="card">
+                <h3>(2024-09-20)</h3>
+                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" />
+                <h4>Temp: 19.10</h4>
+                <h4>Wind: 4.32 M/S</h4>
+                <h4>Humidity: 80%</h4>
+              </li>
+              <li class="card">
+                <h3>(2024-09-20)</h3>
+                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" />
+                <h4>Temp: 19.10</h4>
+                <h4>Wind: 4.32 M/S</h4>
+                <h4>Humidity: 80%</h4>
+              </li>
+              <li class="card">
+                <h3>(2024-09-20)</h3>
+                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" />
+                <h4>Temp: 19.10</h4>
+                <h4>Wind: 4.32 M/S</h4>
+                <h4>Humidity: 80%</h4>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        <h4>Selected Hotels</h4>
-        <ul id="hotelNotesItems" class="list-group"></ul>
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-custom">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Your Notes</a>
+            <div class="d-flex">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fas fa-user-circle"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a href="#" class="dropdown-item">User Profile</a></li>
+                    <li><a href="#" class="dropdown-item">Logout</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Notes Section -->
+        <div id="cart">
+          <h4>Selected Transportation</h4>
+          <ul id="cartItems" class="list-group"></ul>
+
+          <h4>Selected Hotels</h4>
+          <ul id="hotelNotesItems" class="list-group"></ul>
+        </div>
       </div>
     </div>
-  </div>
+
+    <!-- Main Content Area -->
+
+    <script>
+      const busCompanies = {
+        yangon: [
+          { name: "JJ Express", url: "https://jjexpress.net" },
+          { name: "Elite", url: "https://www.elitebus.com" },
+          { name: "Shwe Mandalar", url: "https://www.shwemandalarbus.com" },
+          { name: "Bagan Min Thar", url: "https://www.baganmintharbus.com" },
+        ],
+        mandalay: [
+          { name: "Shwe Mandalar", url: "https://www.shwemandalarbus.com" },
+          { name: "Bagan Min Thar", url: "https://www.baganmintharbus.com" },
+          { name: "JJ Express", url: "https://jjexpress.net" },
+        ],
+        naypyidaw: [
+          { name: "Apex Express", url: "https://www.apexexpressbus.com" },
+          { name: "OK Express", url: "https://www.okexpressbus.com" },
+        ],
+      };
+
+      function showBusCompanies() {
+        const citySelect = document.getElementById("cities");
+        const city = citySelect.value;
+
+        document.getElementById("cities").addEventListener("change", function () {
+          document.getElementById("addToCart").disabled = !this.value;
+        });
+
+        document.getElementById("buses").addEventListener("change", function () {
+          document.getElementById("addToCart").disabled = !this.value;
+        });
+
+        document.getElementById("cities-hotel").addEventListener("change", function () {
+          document.getElementById("addHotelToNotes").disabled = !this.value;
+        });
+
+        document.getElementById("hotels").addEventListener("change", () => {
+          document.getElementById("addHotelToNotes").disabled = !this.value;
+        });
+      }
+
+      showBusCompanies();
 
 
-  <!-- Main Content Area -->
-  <div class="content">
+      document.getElementById("current-date").innerText = new Date().toLocaleString("en-GB").split(",")[0]
 
 
-    <div class="card">
-      <div class="card-header">
-        <h5>Your Notes</h5>
-      </div>
-      <div class="card-body">
-        <ul id="cartItems" class="list-group">
-
-        </ul>
-        <ul id="hotelNotesItems" class="list-group">
-
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const busCompanies = {
-      yangon: [
-        { name: "JJ Express", url: "https://jjexpress.net" },
-        { name: "Elite", url: "https://www.elitebus.com" },
-        { name: "Shwe Mandalar", url: "https://www.shwemandalarbus.com" },
-        { name: "Bagan Min Thar", url: "https://www.baganmintharbus.com" }
-      ],
-      mandalay: [
-        { name: "Shwe Mandalar", url: "https://www.shwemandalarbus.com" },
-        { name: "Bagan Min Thar", url: "https://www.baganmintharbus.com" },
-        { name: "JJ Express", url: "https://jjexpress.net" }
-      ],
-      naypyidaw: [
-        { name: "Apex Express", url: "https://www.apexexpressbus.com" },
-        { name: "OK Express", url: "https://www.okexpressbus.com" }
-      ]
-    };
-
-    function showBusCompanies() {
-      const citySelect = document.getElementById('cities');
-      const city = citySelect.value;
-
-      document.getElementById('cities').addEventListener('change', function () {
-        document.getElementById('addToCart').disabled = !this.value;
-      });
-
-      document.getElementById('buses').addEventListener('change', function () {
-        document.getElementById('addToCart').disabled = !this.value;
-      });
-
-      document.getElementById('cities-hotel').addEventListener('change', function () {
-        document.getElementById('addHotelToNotes').disabled = !this.value;
-      });
-
-      document.getElementById('hotels').addEventListener('change', () => {
-        document.getElementById('addHotelToNotes').disabled = !this.value;
-      });
-    }
-
-    showBusCompanies();
-  </script>
-
-</body>
-
+    </script>
+  </body>
 </html>
