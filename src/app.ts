@@ -14,12 +14,10 @@ export const app = new Hono();
 const log = logger.create("app");
 
 app.use(
-	loggerMW((message) => {
-		const msgs = message.split(" ");
-		log.info(
-			`${msgs[2]} ${msgs[3]} ${msgs[4]} ${msgs[5] || ""} ${msgs[6] || ""}`,
-		);
-	}),
+  loggerMW((message) => {
+    const msgs = message.split(" ");
+    log.info(`${msgs[2]} ${msgs[3]} ${msgs[4]} ${msgs[5] || ""} ${msgs[6] || ""}`);
+  }),
 );
 
 app.use(auth_mw);
