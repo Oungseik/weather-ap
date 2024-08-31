@@ -59,22 +59,20 @@
       <nav class="sidebar">
         <div class="list-group">
           <!-- Transportation Section -->
-          <a href="#" id="transportation-link" class="list-group-item list-group-item-action">
-            <i class="fas fa-bus"></i>
-            <span class="d-none d-lg-inline">Transportation Ways</span>
-          </a>
+            <h3 class="d-none d-lg-inline">Select a city</h3>
           <div class="mb-3">
             <select id="cities" class="form-select" onchange="showBusCompanies()">
               <option value="" disabled selected>Select city</option>
-              <option value="Yangon">Yangon</option>
-              <option value="Mandalay">Mandalay</option>
-              <option value="Naypyidaw">Naypyidaw</option>
-              <option value="Pyay">Pyay</option>
-              <option value="Taungoo">Taungoo</option>
-              <option value="Myingyan">Myingyan</option>
-              <option value="Dawei">Dawei</option>
-                <option value="Bago">Bago</option>
-              <option value="Sittwe">Sittwe</option>
+              <option value="hpa-an">Hpa-An</option>
+              <option value="yangon">Yangon</option>
+              <option value="mandalay">Mandalay</option>
+              <option value="naypyidaw">Naypyidaw</option>
+              <option value="bagan">Bagan</option>
+              <option value="taunggyi">Taung Gyi</option>
+              <option value="mawlamyine">Mawlamyine</option>
+              <option value="pyay">Pyay</option>
+              <option value="myitkyina">Myitkyina</option>
+              <option value="sittwe">Sittwe</option>
             </select>
           </div>
           <div class="mb-3">
@@ -187,7 +185,7 @@
         <div class="weather-data">
           <div class="current-weather">
             <div class="details">
-                <h2 id="current-city">Hpa-An (<span id="current-date"></span>)</h2>
+                <h2 id="current-city" style="text-transform: capitalize;">Hpa-An<span id="current-date"></span></h2>
                 <h4>Temperature: <span id="current-temperature"></span>&deg;C</h4>
                 <h4>Wind speed: <span id="current-windspeed"></span> Km/hr</h4>
                 <h4>Humidity: <span id="current-humidity"></span>%</h4>

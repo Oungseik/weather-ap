@@ -47,7 +47,7 @@ async function fetchCurrentMeteo(param) {
   return fetch(url).then(res => res.json())
 }
 
-document.getElementById("current-date").innerText = new Date().toISOString().slice(0, 10)
+document.getElementById("current-date").innerText = "(" + new Date().toISOString().slice(0, 10) + ")";
 
 let cities = {
   "yangon": [16.8408, 96.1735],
@@ -118,4 +118,9 @@ async function updateCurrentWeather(city = "hpa-an") {
 
 updateCurrentWeather();
 
+let currentCity = document.getElementById("current-city");
 
+document.getElementById("cities").addEventListener("change", (e) => {
+  updateCurrentWeather(e.target.value);
+  currentCity.innerText = e.target.value;
+})
