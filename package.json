@@ -8,7 +8,7 @@
     "dev": "nodemon | pino-pretty -S",
     "build": "tsup",
     "dev-start": "PINO_LOG_LEVEL=debug npm run build && PINO_LOG_LEVEL=debug node ./dist/index.cjs | pino-pretty -S",
-    "lint": "eslint --ignore-pattern \"{dist,node_modules}\""
+    "lint": "eslint --ignore-pattern \"{dist,node_modules,pages}\" --fix"
   },
   "keywords": [],
   "author": "",

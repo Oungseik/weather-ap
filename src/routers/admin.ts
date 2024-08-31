@@ -1,10 +1,11 @@
-import { Visit } from "@/utils/mongodb.js";
 import { Hono } from "hono";
 
-export let router = new Hono();
+import { Visit } from "@/utils/mongodb.js";
 
-let countVisitors = async (start: Date) => {
-  let result = await Visit.aggregate([
+export const router = new Hono();
+
+const countVisitors = async (start: Date) => {
+  const result = await Visit.aggregate([
     {
       $match: {
         date: { $gte: start },
@@ -24,27 +25,27 @@ let countVisitors = async (start: Date) => {
 };
 
 router.get("/vistors/count", async (c) => {
-  let daily = new Date();
+  const daily = new Date();
   daily.setHours(0, 0, 0, 0);
 
-  let dailyCount = await countVisitors(daily);
+  const dailyCount = await countVisitors(daily);
   let weeklyCount;
   let monthlyCount;
   let yearlyCount;
 
-  let weekly = new Date();
+  const weekly = new Date();
   weekly.setDate(daily.getDate() - 7);
   if (c.req.query("weekly")) {
     weeklyCount = await countVisitors(weekly);
   }
 
-  let monthly = new Date();
+  const monthly = new Date();
   monthly.setDate(daily.getDate() - 30);
   if (c.req.query("monthly")) {
     monthlyCount = await countVisitors(monthly);
   }
 
-  let yearly = new Date();
+  const yearly = new Date();
   yearly.setDate(daily.getDate() - 365);
   if (c.req.query("yearly")) {
     yearlyCount = await countVisitors(yearly);

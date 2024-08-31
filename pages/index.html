@@ -189,14 +189,14 @@
         <div class="weather-data">
           <div class="current-weather">
             <div class="details">
-                <h2 id="main-city">Hpa-An (<span id="current-date"></span>)</h2>
-              <h4>Temperature: 19.10</h4>
-              <h4>Wind speed: 4.32 M/S</h4>
-              <h4>Humidity: 80%</h4>
+                <h2 id="current-city">Hpa-An (<span id="current-date"></span>)</h2>
+                <h4>Temperature: <span id="current-temperature"></span>&deg;</h4>
+                <h4>Wind speed: <span id="current-windspeed"></span> M/S</h4>
+                <h4>Humidity: <span id="current-humidity"></span>%</h4>
             </div>
             <div class="icon">
-              <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" />
-              <h4>Moderate Rain</h4>
+              <img id="current-weather-icon" />
+              <h4 id="current-rain"></h4>
             </div>
           </div>
           <div class="days-forecast">
@@ -281,52 +281,6 @@
 
     <!-- Main Content Area -->
 
-    <script>
-      const busCompanies = {
-        yangon: [
-          { name: "JJ Express", url: "https://jjexpress.net" },
-          { name: "Elite", url: "https://www.elitebus.com" },
-          { name: "Shwe Mandalar", url: "https://www.shwemandalarbus.com" },
-          { name: "Bagan Min Thar", url: "https://www.baganmintharbus.com" },
-        ],
-        mandalay: [
-          { name: "Shwe Mandalar", url: "https://www.shwemandalarbus.com" },
-          { name: "Bagan Min Thar", url: "https://www.baganmintharbus.com" },
-          { name: "JJ Express", url: "https://jjexpress.net" },
-        ],
-        naypyidaw: [
-          { name: "Apex Express", url: "https://www.apexexpressbus.com" },
-          { name: "OK Express", url: "https://www.okexpressbus.com" },
-        ],
-      };
-
-      function showBusCompanies() {
-        const citySelect = document.getElementById("cities");
-        const city = citySelect.value;
-
-        document.getElementById("cities").addEventListener("change", function () {
-          document.getElementById("addToCart").disabled = !this.value;
-        });
-
-        document.getElementById("buses").addEventListener("change", function () {
-          document.getElementById("addToCart").disabled = !this.value;
-        });
-
-        document.getElementById("cities-hotel").addEventListener("change", function () {
-          document.getElementById("addHotelToNotes").disabled = !this.value;
-        });
-
-        document.getElementById("hotels").addEventListener("change", () => {
-          document.getElementById("addHotelToNotes").disabled = !this.value;
-        });
-      }
-
-      showBusCompanies();
-
-
-      document.getElementById("current-date").innerText = new Date().toLocaleString("en-GB").split(",")[0]
-
-
-    </script>
+    <script src="/home.js"></script>
   </body>
 </html>

@@ -1,5 +1,6 @@
 import { serveStatic } from "@hono/node-server/serve-static";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { logger as loggerMW } from "hono/logger";
 
 import { logger } from "@/utils/logger.js";
@@ -13,10 +14,13 @@ import { router as userRouter } from "./routers/users.js";
 export const app = new Hono();
 const log = logger.create("app");
 
+app.use(cors({ origin: "*" }));
 app.use(
   loggerMW((message) => {
     const msgs = message.split(" ");
-    log.info(`${msgs[2]} ${msgs[3]} ${msgs[4]} ${msgs[5] || ""} ${msgs[6] || ""}`);
+    log.info(
+      `${msgs[2]} ${msgs[3]} ${msgs[4]} ${msgs[5] || ""} ${msgs[6] || ""}`,
+    );
   }),
 );
 
