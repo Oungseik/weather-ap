@@ -1,65 +1,66 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main Page</title>
-    <link rel="stylesheet" href="/home.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" />
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 0;
-        margin: 0;
-      }
 
-      .main-container {
-        display: flex;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Page</title>
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+    }
 
-      .sidebar {
-        background-color: #f8f9fa;
-        border-right: 1px solid #dee2e6;
-        min-height: 100vh;
-        width: 250px;
-        padding: 20px;
-      }
+    .main-container {
+      display: flex;
+      min-height: 100vh;
+    }
 
-      .content {
-        flex: 1;
-        padding: 20px;
-      }
+    .sidebar {
+      background-color: #f8f9fa;
+      border-right: 1px solid #dee2e6;
+      min-height: 100vh;
+      width: 250px;
+      padding: 20px;
+    }
 
-      .navbar-custom {
-        background-color: #f8f9fa;
-        border-bottom: 1px solid #dee2e6;
-      }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
 
-      select,
-      button {
-        margin: 10px 0;
-        padding: 10px;
-        font-size: 16px;
-      }
+    .navbar-custom {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #dee2e6;
+    }
 
-      #cart,
-      #hotelNotes {
-        margin-top: 20px;
-      }
-    </style>
-  </head>
+    select,
+    button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
 
-  <body>
-    <h1 class="text-center text-bold">Welcome From Weather-Forecasting based Recommendation System</h3>
+    #cart,
+    #hotelNotes {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="text-center text-bold">Welcome From Weather-Forecasting based Recommendation System</h3>
     <div class="main-container">
       <!-- Sidebar -->
       <nav class="sidebar">
         <div class="list-group">
           <!-- Transportation Section -->
-            <h3 class="d-none d-lg-inline">Select a city</h3>
+          <h3 class="d-none d-lg-inline">Select a city</h3>
           <div class="mb-3">
             <select id="cities" class="form-select" onchange="showBusCompanies()">
               <option value="" disabled selected>Select city</option>
@@ -92,15 +93,16 @@
           <div class="mb-3">
             <select id="cities-hotel" class="form-select" onchange="showHotels()">
               <option value="" disabled selected>Select city</option>
-              <option value="Yangon">Yangon</option>
-              <option value="Mandalay">Mandalay</option>
-              <option value="Naypyidaw">Naypyidaw</option>
-              <option value="Pyay">Pyay</option>
-              <option value="Taungoo">Taungoo</option>
-              <option value="Myingyan">Myingyan</option>
-              <option value="Bago">Bago</option>
-              <option value="Dawei">Dawei</option>
-              <option value="Sittwe">Sittwe</option>
+              <option value="hpa-an">Hpa-An</option>
+              <option value="yangon">Yangon</option>
+              <option value="mandalay">Mandalay</option>
+              <option value="naypyidaw">Naypyidaw</option>
+              <option value="bagan">Bagan</option>
+              <option value="taunggyi">Taung Gyi</option>
+              <option value="mawlamyine">Mawlamyine</option>
+              <option value="pyay">Pyay</option>
+              <option value="myitkyina">Myitkyina</option>
+              <option value="sittwe">Sittwe</option>
             </select>
           </div>
           <div class="mb-3">
@@ -124,7 +126,8 @@
             <span class="d-none d-lg-inline">View Weather Conditions</span>
           </a>
         </div>
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutUsModal" data-toggle="modal" data-target="#aboutUsModal">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutUsModal" data-toggle="modal"
+          data-target="#aboutUsModal">
           <i class="fas fa-flag"></i>
           <span class="d-none d-lg-inline">About Us</span>
         </button>
@@ -135,24 +138,13 @@
         </form>
 
         <!-- Modal -->
-        <div
-          class="modal fade"
-          id="aboutUsModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="aboutUsModalLabel"
-          aria-hidden="true"
-        >
+        <div class="modal fade" id="aboutUsModal" tabindex="-1" role="dialog" aria-labelledby="aboutUsModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="aboutUsModalLabel">About Us</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <p>
@@ -185,10 +177,10 @@
         <div class="weather-data">
           <div class="current-weather">
             <div class="details">
-                <h2 id="current-city" style="text-transform: capitalize;">Hpa-An<span id="current-date"></span></h2>
-                <h4>Temperature: <span id="current-temperature"></span>&deg;C</h4>
-                <h4>Wind speed: <span id="current-windspeed"></span> Km/hr</h4>
-                <h4>Humidity: <span id="current-humidity"></span>%</h4>
+              <h2 id="current-city" style="text-transform: capitalize;">Hpa-An<span id="current-date"></span></h2>
+              <h4>Temperature: <span id="current-temperature"></span>&deg;C</h4>
+              <h4>Wind speed: <span id="current-windspeed"></span> Km/hr</h4>
+              <h4>Humidity: <span id="current-humidity"></span>%</h4>
             </div>
             <div class="icon">
               <img id="current-weather-icon" />
@@ -271,5 +263,6 @@
     <!-- Main Content Area -->
 
     <script src="/home.js"></script>
-  </body>
+</body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,16 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
 </head>
+
 <body>
 	<div class="container-fluid">
-		<div class="row g-0">	<!-- Wrapper -->
+		<div class="row g-0"> <!-- Wrapper -->
 			<nav class="col-2 bg-light pe-3 border-right"> <!-- Left Side Nav -->
 				<h1 class="h4 py-3 text-center text-primary">
 					<i class="fas fa-ghost mr-2"></i>
 					<span class="d-none d-lg-inline">ADMIN</span>
 				</h1>
-				
+
 				<div class="list-group text-center text-lg-start">
 					<span class="list-group-item disabled d-none d-lg-block">
 						<small>CONTROLS</small>
@@ -33,8 +35,8 @@
 						<i class="fas fa-chart-line"></i>
 						<span class="d-none d-lg-inline">Statistics</span>
 					</a>
-					
 				</div>
+
 				<div class="list-group mt-4 text-center text-lg-start">
 					<span class="list-group-item disabled d-none d-lg-block">
 						<small>ACTIONS</small>
@@ -47,11 +49,17 @@
 						<i class="fas fa-edit"></i>
 						<span class="d-none d-lg-inline">Update User Data</span>
 					</a>
-					
+
+        <form method="POST" action="/api/auth/logout" class="mt-4">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
+            Log out
+          </button>
+        </form>
+
 				</div>
 			</nav> <!-- Left Side Nav -->
-			<main class="col-10 bg-secondary"> <!-- Main (Top Nav & Content) -->
-				
+
+			<main class="col-10 "> <!-- Main (Top Nav & Content) -->
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<div class="flex-fill"></div>
 					<div class="navbar nav">
@@ -72,92 +80,120 @@
 					</div>
 				</nav>
 				<div class="container-fluid mt-3 p-4"> <!-- Content -->
-					<div class="row mb-3">	<!-- Content Row 0 -->
-              <h2 class="h6 text-white-50">QUICK STATS</h2>
+					<div class="row mb-3"> <!-- Content Row 0 -->
+						<h2 class="h6">QUICK STATS</h2>
 					</div>
-					</div> <!-- Content Row 0 -->
-					<div class="row flex-column flex-lg-row p-4"> <!-- Content Row 1 -->
-						<div class="col">
-							<div class="card mb-3">
-								<div class="card-body">
-									<h3 class="card-title h2"></h3>
-									<span class="text-success">
-										<i class="fas fa-chart-line"></i>
-										Daily visitors
+				</div> <!-- Content Row 0 -->
+				<div class="row flex-column flex-lg-row p-4"> <!-- Content Row 1 -->
+					<div class="col">
+						<div class="card mb-3">
+							<div class="card-body">
+								<h3 class="card-title h2"></h3>
+								<span class="text-success">
+									<i class="fas fa-chart-line"></i>
+									Daily visitors
 
-						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="daily-visitors"></span>
-									</span>
-								</div>
+									<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end"
+										id="daily-visitors"></span>
+								</span>
 							</div>
 						</div>
-						<div class="col">
-							<div class="card mb-3">
-								<div class="card-body">
-									<h3 class="card-title h2"></h3>
-									<span class="text-success">
-										<i class="fas fa-chart-line"></i>
-										Weekly visitors
-						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="weekly-visitors"></span>
-									</span>
-								</div>
+					</div>
+					<div class="col">
+						<div class="card mb-3">
+							<div class="card-body">
+								<h3 class="card-title h2"></h3>
+								<span class="text-success">
+									<i class="fas fa-chart-line"></i>
+									Weekly visitors
+									<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end"
+										id="weekly-visitors"></span>
+								</span>
 							</div>
 						</div>
-						<div class="col">
-							<div class="card mb-3">
-								<div class="card-body">
-									<h3 class="card-title h2"></h3>
-									<span class="text-success">
-										<i class="fas fa-chart-line"></i>
-										Monthly visitors
-						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="monthly-visitors"></span>
-									</span>
-								</div>
+					</div>
+					<div class="col">
+						<div class="card mb-3">
+							<div class="card-body">
+								<h3 class="card-title h2"></h3>
+								<span class="text-success">
+									<i class="fas fa-chart-line"></i>
+									Monthly visitors
+									<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end"
+										id="monthly-visitors"></span>
+								</span>
 							</div>
 						</div>
-						<div class="col">
-							<div class="card mb-3">
-								<div class="card-body">
-									<h3 class="card-title h2"></h3>
-									<span class="text-success">
-										<i class="fas fa-chart-line"></i>
-										Yearly visitors
-						<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end" id="yearly-visitors"></span>
-									</span>
-								</div>
+					</div>
+					<div class="col">
+						<div class="card mb-3">
+							<div class="card-body">
+								<h3 class="card-title h2"></h3>
+								<span class="text-success">
+									<i class="fas fa-chart-line"></i>
+									Yearly visitors
+									<span class="d-none d-lg-inline badge bg-danger rounded-pill float-end"
+										id="yearly-visitors"></span>
+								</span>
 							</div>
 						</div>
-					</div> <!-- Content Row 1 -->
-					<div class="row mt-4 flex-column flex-lg-row"> <!-- Content Row 2 -->
-							</div>
-						</div>
-									
-								</div>
-							</div>
-						</div>
-					</div> 
-				</div> 
+					</div>
+				</div> <!-- Content Row 1 -->
+				<div class="row mt-4 flex-column flex-lg-row"> <!-- Content Row 2 -->
+				</div>
+
+				<div class="container mt-5">
+					<h2 class="mb-4">User Data</h2>
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">Username</th>
+								<th scope="col">Email</th>
+								<th scope="col">Role</th>
+								<th scope="col">Note (Transportation & Hotel)</th>
+							</tr>
+						</thead>
+            <tbody id="user-table">
+							<!-- End example static rows -->
+						</tbody>
+					</table>
+				</div>
 			</main>
-			
-		</div> 
+
+		</div>
 		<footer class="text-center py-4 text-muted">
 			&copy; Copyright 2024
 		</footer>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-    let count = fetch("/api/users/count").then(res => res.json()).then((data) => {
-      document.getElementById("user-count").innerText = data.count
-    })
+	<script>
+		let count = fetch("/api/users/count").then(res => res.json()).then((data) => {
+			document.getElementById("user-count").innerText = data.count
+		})
 
-    let dailyVisit = fetch("/api/admin/vistors/count?weekly=1&monthly=1&yearly=1").then(res => res.json()).then((data) => {
-      document.getElementById("daily-visitors").innerText = data.dailyCount
-      document.getElementById("weekly-visitors").innerText = data.weeklyCount
-      document.getElementById("monthly-visitors").innerText = data.monthlyCount
-      document.getElementById("yearly-visitors").innerText = data.yearlyCount
-    })
+		let dailyVisit = fetch("/api/admin/vistors/count?weekly=1&monthly=1&yearly=1").then(res => res.json()).then((data) => {
+			document.getElementById("daily-visitors").innerText = data.dailyCount
+			document.getElementById("weekly-visitors").innerText = data.weeklyCount
+			document.getElementById("monthly-visitors").innerText = data.monthlyCount
+			document.getElementById("yearly-visitors").innerText = data.yearlyCount
+		})
 
-    </script>
+
+    fetch("/api/users").then(res => res.json()).then(users => {
+      users.forEach(user => {
+      let row = `<tr>
+<td>${user.username}</td>
+<td>${user.email}</td>
+<td>${user.role}</td>
+<td></td>
+</tr>`;
+        document.getElementById("user-table").insertAdjacentHTML("beforeend", row)  ;
+
+})})
+	</script>
 </body>
+
 </html>
+
 </html>
