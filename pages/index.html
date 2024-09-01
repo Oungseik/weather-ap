@@ -77,8 +77,13 @@
             </select>
           </div>
           <div class="mb-3">
-            <select id="buses" class="form-select" disabled>
+            <select id="buses" class="form-select">
               <option value="" disabled selected>Select a bus company</option>
+              <option value="JJ Express">JJ Express</option>
+              <option value="Elite">Elite</option>
+              <option value="Shwe Mandalar">Shwe Mandalar</option>
+              <option value="Bagan Min Thar">Bagan Min Thar</option>
+              <option value="Apex Express">Apex Express</option>
             </select>
           </div>
           <button id="addToCart" class="btn btn-primary" onclick="addToCart()" disabled>
@@ -251,11 +256,15 @@
 
         <!-- Notes Section -->
         <div id="cart">
-          <h4>Selected Transportation</h4>
-          <ul id="cartItems" class="list-group"></ul>
+          <h4>Selected Transportation - <span id="transportation"></span> </h4>
 
-          <h4>Selected Hotels</h4>
-          <ul id="hotelNotesItems" class="list-group"></ul>
+          <h6>Add Note here</h6>
+            <form id="note-form">
+            <textarea id="note-text" rows="5" cols="96" resize="false">
+
+            </textarea>
+              <button id="note-submit" class="btn btn-secondary">submit</button>
+            </form>
         </div>
       </div>
     </div>
@@ -263,6 +272,34 @@
     <!-- Main Content Area -->
 
     <script src="/home.js"></script>
+    <script>
+      let bus = document.getElementById("buses");
+      let note = document.getElementById("note-text");
+
+      fetch("/api/users/one").then(res => res.json()).then(data => {
+        console.log(data);
+        if (data.transportation) {
+          bus.value = data.transportation;
+          document.getElementById("transportation").innerText = data.transportation;
+        }
+
+        if (data.note) {
+          note.value = data.note;
+        } else {
+          note.value = "";
+        }
+      })
+
+      bus.addEventListener("change", (e) => {
+        document.getElementById("transportation").innerText = e.target.value;
+        fetch("/api/users", {method: "POST", body: JSON.stringify({ transportation: e.target.value, note: note.value })})
+      })
+
+      document.getElementById("note-submit").addEventListener("click",e => {
+        e.preventDefault();
+        fetch("/api/users", {method: "POST", body: JSON.stringify({ note: note.value, transportation: bus.value })})
+      })
+    </script>
 </body>
 
 </html>

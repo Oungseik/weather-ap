@@ -150,7 +150,8 @@
 								<th scope="col">Username</th>
 								<th scope="col">Email</th>
 								<th scope="col">Role</th>
-								<th scope="col">Note (Transportation & Hotel)</th>
+								<th scope="col">Transportation</th>
+								<th scope="col">Note</th>
 							</tr>
 						</thead>
             <tbody id="user-table">
@@ -186,7 +187,8 @@
 <td>${user.username}</td>
 <td>${user.email}</td>
 <td>${user.role}</td>
-<td></td>
+<td>${user.transportation ? user.transportation : ""}</td>
+<td>${user.note ? user.note: ""}</td>
 </tr>`;
         document.getElementById("user-table").insertAdjacentHTML("beforeend", row)  ;
 
@@ -196,4 +198,3 @@
 
 </html>
 
-</html>
