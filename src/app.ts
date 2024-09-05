@@ -10,6 +10,7 @@ import { auth_mw } from "./middlewares/auth.js";
 import { router as adminRouter } from "./routers/admin.js";
 import { router as authRouter } from "./routers/auth.js";
 import { router as userRouter } from "./routers/users.js";
+import { router as cityRouter } from "./routers/city.js";
 
 export const app = new Hono();
 const log = logger.create("app");
@@ -18,10 +19,8 @@ app.use(cors({ origin: "*" }));
 app.use(
   loggerMW((message) => {
     const msgs = message.split(" ");
-    log.info(
-      `${msgs[2]} ${msgs[3]} ${msgs[4]} ${msgs[5] || ""} ${msgs[6] || ""}`,
-    );
-  }),
+    log.info(`${msgs[2]} ${msgs[3]} ${msgs[4]} ${msgs[5] || ""} ${msgs[6] || ""}`);
+  })
 );
 
 app.use(auth_mw);
@@ -32,3 +31,5 @@ app.use("/*", serveStatic({ root: "./pages" }));
 app.route("/api/auth", authRouter);
 app.route("/api/users", userRouter);
 app.route("/api/admin", adminRouter);
+
+app.route("/", cityRouter);
